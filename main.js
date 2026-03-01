@@ -109,6 +109,11 @@ guessButton.addEventListener("click",function handeleGuesses(){
     if(successGuess == true){
         // The Input Is Correct 
         message.innerHTML= `You Win The Word Is <span>${wordToGuess}</span>`
+        guessButton.disabled = true;
+        getHintButton.disabled = true;
+        document.querySelector(`.try-${currentTry}`).classList.add("disabled-inputs");
+        let currentTryInput = document.querySelectorAll(`.try-${currentTry} input`);
+        currentTryInput.forEach((input)=>(input.disabled = true));
     }else{
         // The Letter Is Wrong
         document.querySelector(`.try-${currentTry}`).classList.add("disabled-inputs");
@@ -121,7 +126,9 @@ guessButton.addEventListener("click",function handeleGuesses(){
             currentTryInput = document.querySelectorAll(`.try-${currentTry} input`);
             currentTryInput.forEach((input)=>(input.disabled = false));
         }else{
-            message.innerHTML= `You Lose The Word Is <span>${wordToGuess}</span>`
+            message.innerHTML= `You Lose The Word Is <span>${wordToGuess}</span>`;
+            guessButton.disabled = true;
+            getHintButton.disabled = true;
         }
     }
 
